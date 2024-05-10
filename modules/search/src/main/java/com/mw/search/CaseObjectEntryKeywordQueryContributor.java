@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Michael Wall
  */
 @Component(
-	property = "indexer.class.name=com.liferay.object.model.ObjectDefinition#34644",  // Case Object definition
+	property = "indexer.class.name=com.liferay.object.model.ObjectDefinition#34644",  // HARDCODED: Case Object Definition ID.
 	service = KeywordQueryContributor.class
 )
 public class CaseObjectEntryKeywordQueryContributor
@@ -42,7 +42,7 @@ public class CaseObjectEntryKeywordQueryContributor
 			keywordQueryContributorHelper.getSearchContext();
 
 		queryHelper.addSearchTerm(
-			booleanQuery, searchContext, "requestor", true); // Custom field name added to Case Elasticsearch document
+			booleanQuery, searchContext, "requestor", true); // HARDCODED: Custom field name added to Case Elasticsearch document, must match field name used in CaseObjectEntryDocumentContributor.
 	}
 
 	@Reference

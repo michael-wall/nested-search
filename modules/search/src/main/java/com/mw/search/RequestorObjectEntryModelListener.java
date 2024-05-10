@@ -43,7 +43,7 @@ public class RequestorObjectEntryModelListener extends BaseModelListener<ObjectE
 	
 	private boolean isRelevantFieldChanged(ObjectEntry originalModel, ObjectEntry model) {
 		
-		// Check all of the fields that are added to the Case Elasticsearch document.
+		// Check only the fields that are added to the Case Elasticsearch document.
 		
 		Map<String, Serializable> originalValues = originalModel.getValues();
 		Map<String, Serializable> newValues = model.getValues();
@@ -51,24 +51,24 @@ public class RequestorObjectEntryModelListener extends BaseModelListener<ObjectE
 		String originalName = "";
 		String newName = "";
 		
-		if (originalValues.containsKey("name")) originalName = (String)originalValues.get("name");  // Field name from Requestor Object
-		if (newValues.containsKey("name")) newName = (String)newValues.get("name");  // Field name from Requestor Object
+		if (originalValues.containsKey("name")) originalName = (String)originalValues.get("name");  // HARDCODED: Field name from Requestor Object
+		if (newValues.containsKey("name")) newName = (String)newValues.get("name");  // HARDCODED: Field name from Requestor Object
 		
 		if (!originalName.equalsIgnoreCase(newName)) return true;
 		
 		String originalCompany = "";
 		String newCompany = "";
 		
-		if (originalValues.containsKey("company")) originalCompany = (String)originalValues.get("company");  // Field name from Requestor Object
-		if (newValues.containsKey("company")) newCompany = (String)newValues.get("company");  // Field name from Requestor Object
+		if (originalValues.containsKey("company")) originalCompany = (String)originalValues.get("company");  // HARDCODED: Field name from Requestor Object
+		if (newValues.containsKey("company")) newCompany = (String)newValues.get("company");  // HARDCODED: Field name from Requestor Object
 		
 		if (!originalCompany.equalsIgnoreCase(newCompany)) return true;
 		
 		String originalAddress = "";
 		String newAddress = "";
 		
-		if (originalValues.containsKey("address")) originalAddress = (String)originalValues.get("address");  // Field name from Requestor Object
-		if (newValues.containsKey("address")) newAddress = (String)newValues.get("address");  // Field name from Requestor Object
+		if (originalValues.containsKey("address")) originalAddress = (String)originalValues.get("address");  // HARDCODED: Field name from Requestor Object
+		if (newValues.containsKey("address")) newAddress = (String)newValues.get("address");  // HARDCODED: Field name from Requestor Object
 		
 		if (!originalAddress.equalsIgnoreCase(newAddress)) return true;
 		
@@ -78,7 +78,7 @@ public class RequestorObjectEntryModelListener extends BaseModelListener<ObjectE
 	@Override
 	public void onAfterUpdate(ObjectEntry originalModel, ObjectEntry model) throws ModelListenerException {
 
-		if (originalModel.getObjectDefinitionId() != 34704) { // Requestor Object definition
+		if (originalModel.getObjectDefinitionId() != 34704) { // HARDCODED: Requestor Object Definition ID.
 			super.onAfterUpdate(originalModel, model);
 			
 			return;
@@ -96,11 +96,11 @@ public class RequestorObjectEntryModelListener extends BaseModelListener<ObjectE
 			return;
 		}
 		
-		ObjectRelationship objectRelationship = objectRelationshipLocalService.fetchObjectRelationshipByObjectDefinitionId(originalModel.getObjectDefinitionId(), "case"); // Relationship name from Requestor > Relationships.
+		ObjectRelationship objectRelationship = objectRelationshipLocalService.fetchObjectRelationshipByObjectDefinitionId(originalModel.getObjectDefinitionId(), "case"); // HARDCODED: Relationship name from Requestor > Relationships.
 		
 		_log.info("objectRelationship: " + objectRelationship.getObjectRelationshipId());
 		
-		Indexer<ObjectEntry> indexer = IndexerRegistryUtil.nullSafeGetIndexer("com.liferay.object.model.ObjectDefinition#34644"); // Case Object definition
+		Indexer<ObjectEntry> indexer = IndexerRegistryUtil.nullSafeGetIndexer("com.liferay.object.model.ObjectDefinition#34644"); // HARDCODED: Case Object Definition ID.
 
 		List<ObjectEntry> caseObjectEntries = new ArrayList<ObjectEntry>();
 		try {
